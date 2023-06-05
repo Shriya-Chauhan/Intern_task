@@ -1,11 +1,13 @@
 # Building a Live Proctoring System using Dyte
+
 ## TL;DR: 
-In this tutorial, we'll create a powerful **"Live Proctoring System"** using **Dyte APIs**. It empowers admins to monitor students in real-time and automatically detects any cheating attempts during online exams. Get ready to outsmart the cheaters!
+🔒 In this tutorial, we'll create a powerful **"Live Proctoring System"** using **Dyte APIs**. It empowers admins to monitor students in real-time and automatically detects any cheating attempts during online exams. Get ready to outsmart the cheaters! 🕵️‍♀️🔍💻
 
 ## Introduction:
-**Proctoring** is an essential method to prevent cheating during exams. While offline exams have dedicated proctors, online exams require a different approach. Enter live automatic proctoring—a system that monitors students using webcams and microphones, powered by computer vision and machine learning. In this tutorial, we'll build a live proctoring system using **Dyte APIs**. With real-time monitoring, admins can swiftly detect cheating attempts and issue warning messages to ensure exam integrity. Let's dive in and outsmart the cheaters!
+🎓 **Proctoring** is an essential method to prevent cheating during exams. While offline exams have dedicated proctors, online exams require a different approach. Enter live automatic proctoring—a system that monitors students using webcams and microphones, powered by computer vision and machine learning. In this tutorial, we'll build a live proctoring system using **Dyte APIs**. With real-time monitoring, admins can swiftly detect cheating attempts and issue warning messages to ensure exam integrity. Let's dive in and outsmart the cheaters! 🚀💪💡
 
-## High-Level Design of the Application:
+
+## High-Level Design of the Application⚡
 
 **Frontend:**
 - Utilizing React with Dyte UI kit and Dyte React Core packages for the user interface.
@@ -25,7 +27,7 @@ In this tutorial, we'll create a powerful **"Live Proctoring System"** using **D
  This design ensures a user-friendly interface, efficient data management, and reliable storage of screenshots for the live proctoring system.
 <img src='https://github.com/ankiiitraj/dyting/blob/main/hld-proc.png?raw=true' >
 
-## Step 0: Configurations and Setup
+## Step 0: Configurations and Setup 🔧
 
 Before starting the proctoring system development, follow these steps to set up the necessary configurations and tools:
 
@@ -51,7 +53,7 @@ Before starting the proctoring system development, follow these steps to set up 
    - Create an account on [ElephantSQL](https://www.elephantsql.com) and follow the step-by-step guide to set up the necessary database.
 
 Now you are ready to proceed with building the proctoring system. 
-## Step 1: Setting up the frontend
+## Step 1: Setting up the frontend ✨💻
 To get started with the frontend of our live proctoring system, follow these steps:
 1. Create a new React app using `create-react-app` by running the following command:
   ```bash
@@ -115,7 +117,7 @@ To get started with the frontend of our live proctoring system, follow these ste
    
 **Home Component**
 
-The Home component is responsible for rendering the `/` route. Create a new file `frontend/src/Home.jsx` and add the following code:
+The 🏠Home component is responsible for rendering the `/` route. Create a new file `frontend/src/Home.jsx` and add the following code:
 
 ```jsx
 import { Link } from "react-router-dom";
@@ -142,15 +144,22 @@ export default Home;
 
 The Home component renders the `/` route and displays a user-friendly interface. It consists of a centered message and a link to create and join a meeting. The link is only displayed if a `meetingId` is provided and the current URL doesn't have a meeting ID.
 
-**Meet Component**
 
-The Meet component is responsible for rendering the `/meeting/:meetingId` route. It enables the functionality for conducting meetings and differentiates between admin and regular user roles. Here's how it works:
+**🤝 Meet Component**
 
-- When an admin clicks on the link provided on the `/` route, they are redirected to the meeting page.
-- The admin is automatically added to the meeting as a participant with the `group_call_host` preset, giving them administrative privileges.
-- The link from the address bar can be shared with candidates or regular users.
-- When a candidate opens the shared link, they join the meeting as a regular user without administrative privileges.
-- For every regular user, the Meet component starts emitting screenshots of their video to our Python server (more details on this in the next section).
+The Meet component plays a crucial role in our application, handling the `/meeting/:meetingId` route. It empowers us to conduct seamless meetings while distinguishing between admin and regular user roles. Let's dive into how it works:
+
+👩‍💼 When an admin clicks on the link provided on the `/` route, they are instantly redirected to the meeting page.
+
+🔐 The admin is automatically added to the meeting as a participant with the `group_call_host` designation, granting them administrative privileges.
+
+🔗 The link from the address bar can be easily shared with candidates or regular users.
+
+👤 When a candidate opens the shared link, they join the meeting as a regular user, devoid of administrative privileges.
+
+📸 For every regular user, the Meet component takes charge of capturing and sending screenshots of their video to our Python server (more details on this in the next section).
+
+By seamlessly managing the different roles and responsibilities within our meetings, the Meet component ensures a smooth and productive collaboration experience. 🚀✨
 ```jsx
 
 import { useState, useEffect, useRef } from 'react';
@@ -282,7 +291,7 @@ The `joinMeeting` function adds the current client to the meeting.
 The `SendImageToBackendMiddleware` function sends screenshots of the candidate's video to the Python server.
 
 **Proctor Component**
-The Proctor component is designed for admins and is responsible for displaying the list of suspicious candidates in a chat-like format. To use the Proctor component, create a file named `Proctor.jsx` in the `frontend/src` directory.
+🔍The Proctor component is designed for admins and is responsible for displaying the list of suspicious candidates in a chat-like format. To use the Proctor component, create a file named `Proctor.jsx` in the `frontend/src` directory .✍️💻
 
 ```jsx
 import { useEffect, useState } from "react";
@@ -354,7 +363,7 @@ export default Proctor;
 To start the React app on the local server, run the command `yarn start`. Then, visit `http://localhost:3000/` in your browser to view the Dyte meeting.
 <img src="https://user-images.githubusercontent.com/42088801/239780692-37a4f1a7-3901-4e7e-a690-7804dda91972.png">
 
-## Step 2: Setting up the backend
+## Step 2: Setting up the backend 🛠️💻
 
 Now, go back to the root directory of our project and create a new directory called  `backend`  using the following command:
 ```shell
@@ -621,9 +630,9 @@ if __name__ == "__main__":
     uvicorn.run("app:app", host="localhost", port=8000, log_level="debug", reload=True)
 
 ```
-The provided code sets up a FastAPI application with a specific endpoint called `/detect_faces`. This endpoint is responsible for receiving a base64 encoded image as input. The code then utilizes the `face_recognition` library to detect faces within the image.
+The provided code sets up a 🏃‍♂️FastAPI application with a specific endpoint called `/detect_faces`. This endpoint is responsible for receiving a base64 encoded image as input. The code then utilizes the😄 `face_recognition` library to detect faces within the image.
 
-To set up the backend environment and specify the necessary dependencies, follow these steps:
+To set up the backend environment 🌍 and specify the necessary dependencies, follow these steps:
 
 1. Create a new file called `.env` inside the backend directory.
 2. Open the `.env` file and add the following environment variables with their corresponding values:
